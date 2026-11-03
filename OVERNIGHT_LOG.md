@@ -18,3 +18,15 @@ Spec: research/angelo/PREREGISTRATION.md (copy of PR #9). Grid and primary cells
 - tests/contrib/test_angelo.py: +3 tests (span 1 equals the residual; for spans 6 and 24, zero mean and zero cov with the span-hour return, plus prefix causality).
 - Full suite: `.venv/bin/python -m pytest -q`: 41 passed.
 - Next: item (d) audit of the primary cell, then the 9-cell grid.
+
+## 2026-11-03 23:55 CET: item (d), done
+- Audit of the primary cell (research/angelo/audit_primary.txt, seed 2228275014): FINAL VERDICT REJECT.
+  Causality PASS (14 cuts), DQS 99.93, 1h rank IC +0.0110 (t 5.10).
+  Sharpe 0/3/5/10/tiered bps: +1.48 [-0.09, 2.96] / -9.93 / -17.51 / -36.30 / -28.15. Turnover 0.723 per hour.
+  OOS 30% @5bps -16.30. Lag test: 2-bar SR -19.20, FAIL. Null check PASS (+0.01). Wick share 2.8%, PASS.
+  Gross +42.7% vs fees 537.8% at 5 bps -> break-even about 0.39 bps.
+- Grid (research/angelo/grid.py, grid_results.csv/.md): all 9 cells have negative net Sharpe at 5 bps (-6.9 to -30.0), all CIs below 0.
+  Holm-adjusted p < 1e-18 for every cell, but every one of those is for a NEGATIVE Sharpe, so no cell supports H2.
+  Gross Sharpe (0 bps) is positive in every cell: k=1 about 2.6, k=6 about 1.5, k=24 about 0.35-0.57. Break-even fee 0.23-0.45 bps. Turnover 0.27-1.41 per hour.
+- Proposal (NOT run, NOT part of the result): a holding rule that only trades when |signal| is extreme, or spans of 48h or more, would cut turnover. Given the gross Sharpe falls as the span grows and the skip-1 IC is about 0, I don't expect either to clear 5 bps. Left as a note for the write-up.
+- Next: item (e) RESULTS.md.
