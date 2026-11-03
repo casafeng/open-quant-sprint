@@ -30,3 +30,11 @@ Spec: research/angelo/PREREGISTRATION.md (copy of PR #9). Grid and primary cells
   Gross Sharpe (0 bps) is positive in every cell: k=1 about 2.6, k=6 about 1.5, k=24 about 0.35-0.57. Break-even fee 0.23-0.45 bps. Turnover 0.27-1.41 per hour.
 - Proposal (NOT run, NOT part of the result): a holding rule that only trades when |signal| is extreme, or spans of 48h or more, would cut turnover. Given the gross Sharpe falls as the span grows and the skip-1 IC is about 0, I don't expect either to clear 5 bps. Left as a note for the write-up.
 - Next: item (e) RESULTS.md.
+
+## 2026-11-04 00:05 CET: items (e) and (f), done
+- research/angelo/RESULTS.md: hypothesis, pre-registered setup, IC table, grid table, audit verdict, lag-test Sharpe, fee rows, turnover, break-even fee, wick share, and the conclusion. Verdict: REJECT.
+- research/angelo/PR_UPDATE.md: draft of the new PR #9 description. It keeps the pre-registration text exactly as posted, adds Results, the audit output verbatim, Empirical Notes (about 170 words) and the checklist. NOT posted. Pushing and editing the PR are for the user to do.
+- Problems: none blocking. One harmless RuntimeWarning in ic_study.py (nanmean over the all-NaN first hour).
+- Not done on purpose: no push, no gh, no holdout, nothing outside the allowed paths.
+
+DONE
