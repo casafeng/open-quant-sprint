@@ -11,3 +11,10 @@ Spec: research/angelo/PREREGISTRATION.md (copy of PR #9). Grid and primary cells
 - S_raw (comparison only, not tested): h=1 IC 0.031 (t 12.7), skip-1 0.0117 (t 4.87). The raw gap is mostly reversal, and that reversal lasts longer than the residual's effect.
 - Read: H1 holds at h=1-4, but the effect is mostly gone one bar later, as the stated prior expected. Expect the lag test to fail.
 - Next: item (b) strategy file.
+
+## 2026-11-03 23:45 CET: items (b) and (c), done
+- src/contrib/angelo.py: added smoothed_close_location_residual(df, span), the pre-registered signal: per-symbol EWM(span) of the residual, re-residualized per timestamp on the span-hour log return.
+- strategies/angelo_closeloc.py: -signal -> cross_sectional_zscore -> rebalance_deadband. Primary cell SPAN=6, DEADBAND=0.015 hard-coded.
+- tests/contrib/test_angelo.py: +3 tests (span 1 equals the residual; for spans 6 and 24, zero mean and zero cov with the span-hour return, plus prefix causality).
+- Full suite: `.venv/bin/python -m pytest -q`: 41 passed.
+- Next: item (d) audit of the primary cell, then the 9-cell grid.
